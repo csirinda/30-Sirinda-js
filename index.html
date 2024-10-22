@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form">
+      <h1>Shopping Cart</h1>
+      <h3>Add Item for selection</h3>
+      <div>
+        <label>Product Name:</label>
+        <input type="text" id="productname-input" required />
+        <label>Price:</label>
+        <input type="number" id="price-input" required />
+        <label>Image:</label>
+        <input type="url" id="image-input" required />
+        <button id="create-product">Create Product</button>
+      </div>
+      <div><ul id="Product-list"></ul></div>
+
+      <div>
+        <ul id="Cart-list"></ul>
+      </div>
+      <h2 id="cal-price"></h2>
+    </form>
+    <script src="main.js"></script>
+  </body>
+</html>
