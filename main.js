@@ -13,19 +13,36 @@ const totalPriceElement = document.getElementById("cal-price");
 let products = [];
 let cart = [];
 createBnt.addEventListener("click", () => {
-    const productName = productNameInput.value.trim(); //.trim = ตัดเว้นวรรค เอาแค่ข้อความ
+    const productName = productNameInput.value.trim();
     const price = priceInput.value;
     const imageUrl = urlInput.value;
-    // ใส่ข้อมูลครบ ถึงจะทำต่อ
+
+    // ตรวจสอบความถูกต้องของข้อมูล
+    if (!isNaN(price)) {
+        // ราคาเป็นตัวเลข
+    } else {
+        alert("ราคาต้องเป็นตัวเลขเท่านั้น");
+        return; // หยุดการทำงานของฟังก์ชัน
+    }
+
+    const imageRegex = /\.(jpg|png|gif)$/i;
+    if (imageRegex.test(imageUrl)) {
+        // URL รูปภาพถูกต้อง
+    } else {
+        alert("URL รูปภาพต้องมีนามสกุล .jpg, .png หรือ .gif");
+        return;
+    }
+
+    // ถ้าผ่านการตรวจสอบทั้งหมด
     if (productName && price && imageUrl) {
         const product = {
-            id: Date.now(), 
+            id: Date.now(),
             name: productName,
             imageUrl: imageUrl,
             price: price
         };
         products.push(product); //เอาค่าinput ไปใส่ array products
-        renderProducts(products); // เรียกใช้ function
+        renderProducts(products);
         productNameInput.value = ""; //สุดท้าย ให้ค่า input ในกล่อง หายไป
         priceInput.value = "";
         urlInput.value = "";
@@ -49,7 +66,7 @@ createBnt.addEventListener("click", () => {
             const addToCartBtn = document.createElement("input");
             addToCartBtn.type ="checkbox";
             productElement.appendChild(addToCartBtn);           
-            addToCartBtn.addEventListener("click", () => addToCart(product.id)); //function เมื่อกด add ตามid
+            addToCartBtn.addEventListener("click", () => addToCart(product.id)); //function เมื่อกด box ตามid
             // ปุ่ม remove
             const removeBtn = document.createElement("button");
             productElement.appendChild(removeBtn);
